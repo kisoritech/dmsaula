@@ -20,6 +20,18 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Cadastro e confirmação de usuários
+
+O cadastro comum fica em `/aluno/cadastro` e cria registros na collection de autenticação `users`. Após o cadastro, o PocketBase envia a verificação e a tela `/confirmacao` conclui a confirmação pelo token recebido.
+
+Para o link do e-mail abrir diretamente no sistema, configure o template de verificação do PocketBase para apontar para a aplicação, por exemplo:
+
+```text
+http://localhost:3000/confirmacao/{{.Token}}
+```
+
+Em produção, substitua `http://localhost:3000` pelo domínio da aplicação.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

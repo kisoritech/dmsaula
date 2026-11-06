@@ -1,51 +1,7 @@
-"use client";
+import UserRegistration from "@/app/ui/UserRegistration";
 
-import { pb } from "@/lib/pocketbase";
-
-export default function CadastroAluno() {
-
-    async function salvar(e: React.SubmitEvent<HTMLFormElement>){
-        e.preventDefault();
-        const form = e.currentTarget;
-        const dados = new FormData(form);
-        await pb.collection("tb_aluno").create({
-            nome: dados.get("nome"),
-            idade: dados.get("idade"),
-            email: dados.get("email"),
-            telefone: dados.get("telefone"),
-        });
-        alert("Aluno Cadastrado");
-        form.reset();
-    }
-
-    return (
-        <div>
-            <form onSubmit={salvar}>
-                <label>Nome do aluno</label>
-                <input
-                    type="text"
-                    name="nome"
-                    placeholder="Nome do aluno"
-                />
-                <input
-                    type="text"
-                    name="idade"
-                    placeholder="Idade do aluno"
-                />
-                <input
-                    type="text"
-                    name="email"
-                    placeholder="E-mail do aluno"
-                />
-                <input
-                    type="text"
-                    name="telefone"
-                    placeholder="Telefone do aluno"
-                />
-                <button type="submit">
-                    Cadastrar
-                </button>
-            </form>
-        </div>
-    )
+export default async function CadastroAluno({ searchParams }: { searchParams: Promise<{ token?: string | string[] }> }) {
+  const params = await searchParams;
+  const token = Array.isArray(params.token) ? params.token[0] : params.token;
+  return <UserRegistration initialToken={token || ""} />;
 }

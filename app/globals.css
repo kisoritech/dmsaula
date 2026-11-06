@@ -1,8 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f5f7fb;
+  --foreground: #14213d;
+  --navy: #14213d;
+  --line: #e5eaf2;
+  --surface: #ffffff;
+  --teal: #0c8b81;
+  --teal-dark: #08746d;
+  --orange: #f08c46;
 }
 
 @theme inline {
@@ -12,15 +18,73 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+* { box-sizing: border-box; }
+
+html { background: var(--background); }
 
 body {
-  background: var(--background);
+  min-height: 100vh;
+  margin: 0;
+  background: radial-gradient(circle at 85% -10%, rgba(12, 139, 129, 0.1), transparent 32rem), var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+button, input, select { font: inherit; }
+button { cursor: pointer; }
+
+.field-input {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  background: #fff;
+  padding: 0.7rem 0.8rem;
+  color: var(--navy);
+  font-size: 0.875rem;
+  outline: none;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.field-input::placeholder { color: #a3adbd; }
+
+.field-input:focus {
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px rgba(12, 139, 129, 0.12);
+}
+
+.resource-card {
+  display: flex;
+  gap: 1rem;
+  min-height: 13.2rem;
+  border: 1px solid var(--line);
+  border-radius: 1.25rem;
+  background: var(--surface);
+  padding: 1.25rem;
+  box-shadow: 0 8px 24px rgba(20, 33, 61, 0.03);
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.resource-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(12, 139, 129, 0.35);
+  box-shadow: 0 14px 30px rgba(20, 33, 61, 0.08);
+}
+
+.resource-icon {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.8rem;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.tone-teal { background: #e5f7f4; color: #08746d; }
+.tone-orange { background: #fff0e6; color: #c05a16; }
+.tone-blue { background: #eaf1ff; color: #3c65bd; }
+.tone-purple { background: #f1ebff; color: #7250b9; }
+.tone-green { background: #e6f7ed; color: #328457; }
+.tone-rose { background: #ffe9ef; color: #bd5573; }
